@@ -34,4 +34,14 @@ Route::get('/menuitems', 'MenuItemsController@index')->name('menuitems');
 Route::match(['GET', 'POST'], '/menuitems/add', 'MenuItemsController@add');
 Route::match(['GET', 'POST'], '/menuitems/edit/{id}', 'MenuItemsController@edit');
 
+Route::get('/booking', 'RoomBookingController@index')->name('booking');
+Route::match(['GET', 'POST'], '/booking/add', 'RoomBookingController@add');
+Route::match(['GET', 'POST'], '/booking/edit/{id}', 'RoomBookingController@edit');
+Route::match(['GET', 'POST'], '/booking/saveSearch', 'RoomBookingController@saveSearch');
+Route::get('/booking/roomdata', 'RoomBookingController@roomData');
+Route::match(['GET', 'POST'], '/booking/saveRooms', 'RoomBookingController@saveRooms');
+Route::match(['GET', 'POST'], '/booking/saveGuests', 'RoomBookingController@saveGuests');
+Route::match(['GET', 'POST'], '/booking/saveBooking', 'RoomBookingController@saveBooking');
+
+
 // Route::post('/hotels/save', 'HotelController@save');

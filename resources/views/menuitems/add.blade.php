@@ -50,7 +50,7 @@
 
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary mb-2">Save</button>
-                      <button type="button" class="btn btn-primary mb-2" onclick="javascript:window.location.href='/menuitems'">Cancel</button>
+                      <button type="button" class="btn btn-danger mb-2" onclick="javascript:window.location.href='/menuitems'">Cancel</button>
 
                     </div>
 
