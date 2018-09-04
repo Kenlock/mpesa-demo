@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="{{ asset('js/booking.js') }}" defer></script>
+
 <div class="container">
 
     <div class="row justify-content-center">

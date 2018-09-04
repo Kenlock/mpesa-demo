@@ -17,7 +17,6 @@
     <script src="{{ asset('js/moment.min.js') }}" defer></script>
 
     <script src="{{ asset('bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}" defer></script>
-    <script src="{{ asset('js/booking.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
