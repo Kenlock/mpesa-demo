@@ -2,20 +2,21 @@
 
 @section('content')
 <div class="container">
-    <button type="button" class="btn btn-primary" onclick="javascript:window.location.href='/menuitems/add'">Add Menu Item</button>
+    <button type="button" class="btn btn-primary" onclick="javascript:window.location.href='/booking/add'">Add Booking</button>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-11">
             <div class="card">
-                <div class="card-header">menu Items</div>
+                <div class="card-header">Bookings</div>
 
                 <div class="card-body">
                   <table class="table">
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Price</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Total Guests</th>
+                        <th>Total Rooms</th>
                         <th>Created</th>
                         <th>Updated</th>
                         <th>Active</th>
@@ -26,20 +27,21 @@
                       @foreach ($links as $link)
                       <tr>
                         <td>{{ $link->id }}</td>
-                        <td>{{ $link->name }}</td>
-                        <td>{{ $link->itemType->name }}</td>
-                        <td>{{ $link->item_price }}</td>
+                        <td>{{ $link->start_date }}</td>
+                        <td>{{ $link->end_date }}</td>
+                        <td>{{ $link->total_guests }}</td>
+                        <td>{{ $link->total_rooms }}</td>
                         <td>{{ $link->created_at }}</td>
                         <td>{{ $link->updated_at }}</td>
                         <td>{{ $link->is_active?'Yes':'No' }}</td>
 
-                        <td><a href="{{action('MenuItemsController@edit', $link->id)}}" class="btn btn-warning">Edit</a></td>
+                        <td><a href="{{action('RoomBookingController@edit', $link->id)}}" class="btn btn-warning">Edit</a></td>
                       </tr>
                       @endforeach
                     </tbody>
                     <tfoot>
                       <tr>
-                        <td colspan="4">
+                        <td colspan="9">
                           {{ $links->links() }}
                         </td>
                       </tr>

@@ -93,6 +93,7 @@ function saveBooking() {
     success: function(response) {
       // $('.nav-tabs a[href="#confirm"]').tab('show');
       console.log('In Success');
+      document.locatio.href = '/booking';
     },
     error: function() {
       console.log('In Error');

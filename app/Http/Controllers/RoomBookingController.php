@@ -13,7 +13,7 @@ class RoomBookingController extends Controller
 
     public function index() {
 
-      $links = \App\RoomBooking::where('hotel_id', $this->defaultHotelId)->paginate(config('app.default_pagination'));
+      $links = \App\Booking::where('hotel_id', $this->defaultHotelId)->paginate(config('app.default_pagination'));
       //echo '<pre>';
       //print_r($links);
       return view('roombooking.index', ['links' => $links]);
@@ -25,7 +25,7 @@ class RoomBookingController extends Controller
       foreach($room_types as $room_type) {
         $room_data[$room_type->id] = ['name' => $room_type->name, 'rooms' => []];
       }
-      $rooms = \App\Room::where('is_active', 1)->where('hotel_id', $this->defaultHotelId)->get();
+      $rooms = \App\Room::where('is_active', 1)->where('occupied', 'No')->where('hotel_id', $this->defaultHotelId)->get();
       foreach($rooms as $room) {
         $room_data[$room->room_type_id]['rooms'][] = ['id' => $room->id, 'room_no' => $room->room_no ];
       }
@@ -52,7 +52,7 @@ class RoomBookingController extends Controller
 
         return redirect('roombooking')->with('success', 'Information has been added');
       }
-
+      $session_data = $request->session()->get('booking');
       $roombooking_types = \App\MenuItemType::where('is_active', 1)->get();
       $room_types = \App\RoomType::where('is_active', 1)->where('hotel_id', $this->defaultHotelId)->get();
       /*$room_data = [];
@@ -66,16 +66,29 @@ class RoomBookingController extends Controller
       /*echo '<pre>';
       print_r($room_data);die;*/
       // $j_room_data = json_encode($room_data);
-      return view('roombooking.add', ['roomtypes' => $room_types]);
+      return view('roombooking.add', ['roomtypes' => $room_types, 'session_data' => $session_data]);
     }
 
     public function edit($id, Request $request) {
       // https://appdividend.com/2018/02/23/laravel-5-6-crud-tutorial/
 
-      $menuitem = \App\RoomBooking::find($id);
+      $booking = \App\Booking::find($id);
+      $guest = \App\Guests::where('booking_id', $id)->firstOrFail();
+      $roomBookData = \App\RoomOccupations::where('is_active', 1)->where('booking_id', $id)->get();
 
-      if($request->has('name'))
-      {
+      $rooms = [];
+      foreach($roomBookData as $roomBook) {
+        $room = \App\Room::find($roomBook->room_id);
+
+        $rooms[] = (object) [
+          'id' => $roomBook->room_id,
+          'type' => $room->room_type_id,
+        ];
+      }
+
+      // print_r($rooms);die;
+
+      if($request->has('name')) {
         $validatedData = $request->validate([
           'name' => 'required',
           'item_type' => 'required',
@@ -91,8 +104,13 @@ class RoomBookingController extends Controller
 
         return redirect('roombooking')->with('success', 'Information has been updated');
       }
-      $roombooking_types = \App\MenuItemType::where('is_active', 1)->get();
-      return view('roombooking.edit', ['menuitem' => $menuitem, 'roombookingtypes' => $roombooking_types]);
+
+      $booking->start_date_formatted = date('Y-m-d', strtotime($booking->start_date));
+      $booking->end_date_formatted = date('Y-m-d', strtotime($booking->end_date));
+      // echo $booking->end_date_formatted;die;
+      $room_types = \App\RoomType::where('is_active', 1)->where('hotel_id', $this->defaultHotelId)->get();
+
+      return view('roombooking.edit', ['booking' => $booking, 'rooms' => $rooms, 'guest' => $guest, 'roomtypes' => $room_types]);
     }
 
     public function saveSearch(Request $request) {
@@ -197,8 +215,20 @@ class RoomBookingController extends Controller
       try {
         $session_data = $request->session()->get('booking');
 
+        $booking = new \App\Booking;
+        $booking->hotel_id = $this->defaultHotelId;
+        $booking->total_guests = $session_data['search']['total_guests'];
+        $booking->total_rooms = $session_data['search']['total_rooms'];
+        $booking->start_date = $session_data['search']['start_date'];
+        $booking->end_date = $session_data['search']['end_date'];
+        $booking->paid = 'No';
+        $booking->is_active = 1;
+        $booking->save();
+        $booking_id = $booking->id;
+
         $guest = new \App\Guests;
         $guest->hotel_id = $this->defaultHotelId;
+        $guest->booking_id = $booking_id;
         $guest->first_name = $session_data['guests']['first_name'];
         $guest->last_name = $session_data['guests']['last_name'];
         $guest->address = $session_data['guests']['address'];
@@ -219,6 +249,7 @@ class RoomBookingController extends Controller
 
         for($i=0;$i<count($session_data['rooms']);$i++) {
           $occupation = new \App\RoomOccupations;
+          $occupation->booking_id = $booking_id;
           $occupation->guest_id = $guest_id;
           $occupation->room_id = $session_data['rooms'][$i]['id'];
           $occupation->start_date = $session_data['search']['start_date'];
@@ -227,13 +258,10 @@ class RoomBookingController extends Controller
           $occupation->is_active = 1;
           $occupation->save();
 
-          $room = Room::where('room_id', $session_data['rooms'][$i]['id'])->firstOrFail();
+          $room = \App\Room::find($session_data['rooms'][$i]['id']);
           $room->occupied = 'Yes';
           $room->save();
-
         }
-
-
 
         return response()->json(['message' => 'Data Saved', 'session_data' => $session_data ]);
       } catch (\Exception $e) {
