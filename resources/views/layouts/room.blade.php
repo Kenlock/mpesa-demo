@@ -46,26 +46,14 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('roomorder') }}">{{ __('Room Dashboard') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li> -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admindashboard') }}">{{ __('Admin Dashboard') }}</a>
-                            </li>
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="{{ route('hotels') }}">{{ __('Hotels') }}</a>
-                            </li>-->
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('roomtypes') }}">{{ __('Room Types') }}</a>
+                                <a class="nav-link" href="{{ route('orderlist') }}">{{ __('Recent Orders') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('rooms') }}">{{ __('Rooms') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('menuitems') }}">{{ __('Menu Items') }}</a>
+                                <a class="nav-link" href="{{ route('roomorderadd') }}">{{ __('Add Order') }}</a>
                             </li>
                         @else
                             <li class="nav-item dropdown">

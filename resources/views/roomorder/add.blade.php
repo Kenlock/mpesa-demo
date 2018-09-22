@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.room')
 
 @section('content')
 <script src="{{ asset('js/order.js') }}" defer></script>
@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Booking</div>
+                <div class="card-header">Order</div>
 
                 <div class="card-body">
 

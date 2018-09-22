@@ -259,6 +259,7 @@ class RoomBookingController extends Controller
           $occupation->save();
 
           $room = \App\Room::find($session_data['rooms'][$i]['id']);
+          $room->booking_id = $booking_id;
           $room->occupied = 'Yes';
           $room->save();
         }

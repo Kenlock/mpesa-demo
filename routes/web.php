@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
+Route::match(['GET', 'POST'], '/adminlogin', 'HomeController@adminLogin')->name('adminlogin');
+Route::match(['GET', 'POST'], '/roomlogin', 'HomeController@roomLogin')->name('roomlogin');
+
 Route::get('/login', 'UserController@login')->name('login');
 Route::get('/register', 'UserController@register')->name('register');
 
@@ -43,8 +44,14 @@ Route::match(['GET', 'POST'], '/booking/saveRooms', 'RoomBookingController@saveR
 Route::match(['GET', 'POST'], '/booking/saveGuests', 'RoomBookingController@saveGuests');
 Route::match(['GET', 'POST'], '/booking/saveBooking', 'RoomBookingController@saveBooking');
 
-Route::get('/roomorder', 'RoomOrderController@index')->name('roomorder');
-Route::match(['GET', 'POST'], '/roomorder/add', 'RoomOrderController@add');
+Route::match(['GET', 'POST'], '/roomorder', 'RoomOrderController@index')->name('roomorder');
+Route::match(['GET', 'POST'], '/roomorder/add', 'RoomOrderController@add')->name('roomorderadd');
 Route::match(['GET', 'POST'], '/roomorder/edit/{id}', 'RoomOrderController@edit');
+Route::match(['GET', 'POST'], '/roomorder/view/{id}', 'RoomOrderController@view');
+Route::get('/roomorder/roomdata', 'RoomOrderController@roomData');
+Route::get('/roomorder/orderlist', 'RoomOrderController@orderlist')->name('orderlist');
+
+Route::get('/admindashboard', 'HomeController@adminDashboard')->name('admindashboard');
+
 
 // Route::post('/hotels/save', 'HotelController@save');
