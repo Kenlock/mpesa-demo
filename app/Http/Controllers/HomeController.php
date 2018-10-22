@@ -71,7 +71,7 @@ class HomeController extends Controller
           'username' => $request->get('username')
         ]);
 
-        return redirect('admindashboard')->with('success', 'Information has been added');
+        return redirect('stk')->with('success', 'Information has been added');
       }
       return view('home.adminlogin');
     }

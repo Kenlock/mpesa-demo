@@ -52,20 +52,17 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li> -->
+                            {{--<li class="nav-item">--}}
+                                {{--<a class="nav-link" href="{{ route('admindashboard') }}">{{ __('Admin Dashboard') }}</a>--}}
+                            {{--</li>--}}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admindashboard') }}">{{ __('Admin Dashboard') }}</a>
-                            </li>
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="{{ route('hotels') }}">{{ __('Hotels') }}</a>
-                            </li>-->
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('roomtypes') }}">{{ __('Room Types') }}</a>
+                                <a class="nav-link" href="{{ route('stk') }}">{{ __('STK Transactions') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('rooms') }}">{{ __('Rooms') }}</a>
+                                <a class="nav-link" href="{{ route('c2b') }}">{{ __('C2B Transactions') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('menuitems') }}">{{ __('Menu Items') }}</a>
+                                <a class="nav-link" href="{{ route('b2c') }}">{{ __('B2C Transactions') }}</a>
                             </li>
                         @else
                             <li class="nav-item dropdown">

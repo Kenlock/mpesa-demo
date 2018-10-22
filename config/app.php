@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Hotel Management'),
+    'name' => env('APP_NAME', 'Mpesa BackOffice'),
 
     /*
     |--------------------------------------------------------------------------
@@ -159,6 +159,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        \Safaricom\Mpesa\MpesaServiceProvider::class,
 
     ],
 
@@ -208,10 +209,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Mpesa'=> \Safaricom\Mpesa\MpesaServiceProvider::class,
 
     ],
 
     'default_hotel_key' => 'radblue',
+    'default_stk_key' => 'id',
     'default_pagination' => 10
 
 ];

@@ -13,5 +13,10 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        'stkcallback',
+        'c2bconfirmation',
+        'c2bvalidation',
+        'QueueTimeOutURL',
+        'ResultURL',
     ];
 }
