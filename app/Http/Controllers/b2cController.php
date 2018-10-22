@@ -40,27 +40,22 @@ class b2cController extends Controller
             $mpesa= new \Safaricom\Mpesa\Mpesa();
 
             $b2cTransaction=$mpesa->b2c($InitiatorName, $SecurityCredential, $CommandID, $Amount, $PartyA, $PartyB, $Remarks, $QueueTimeOutURL, $ResultURL, $Occasion);
-            echo gettype($b2cTransaction);
-            $b2cjson = json_encode($b2cTransaction);
-            echo gettype($b2cjson);
-            $resp = json_decode($b2cjson);
-            echo gettype($resp);
-            print_r($resp);
+            $resp = json_decode($b2cTransaction);
 
-//            if (isset($resp->errorCode)) {
-//                $message = $resp->errorMessage;
-//                return redirect('b2c/add')->withErrors($message);
-//
-//            } else {
-//                $b2c = new \App\B2c;
-//                $b2c->originator_conversation_id = $resp->OriginatorConversationID;
-//                $b2c->conversation_id = $resp->ConversationID;
-//                $b2c->response_code = $resp->ResponseCode;
-//                $b2c->save();
-//                $message =  $resp->ResponseDescription;
-//
-//                return redirect()->back()->withSuccess($message);
-//            }
+            if (isset($resp->errorCode)) {
+                $message = $resp->errorMessage;
+                return redirect('b2c/add')->withErrors($message);
+
+            } else {
+                $b2c = new \App\B2c;
+                $b2c->originator_conversation_id = $resp->OriginatorConversationID;
+                $b2c->conversation_id = $resp->ConversationID;
+                $b2c->response_code = $resp->ResponseCode;
+                $b2c->save();
+                $message =  $resp->ResponseDescription;
+
+                return redirect()->back()->withSuccess($message);
+            }
         }
         return view('b2c.add', []);
     }

@@ -75,7 +75,6 @@ class StkController extends Controller
 
             $resp = json_decode($callbackData);
 
-            print_r($resp);
 
             $resultDesc = $resp->ResultDesc;
             $amountPaid = $resp->amount;
