@@ -48,7 +48,6 @@ class b2cController extends Controller
 
             } else {
                 $b2c = new \App\B2c;
-                $b2c->originator_conversation_id = $resp->OriginatorConversationID;
                 $b2c->conversation_id = $resp->ConversationID;
                 $b2c->response_code = $resp->ResponseCode;
                 $b2c->save();
@@ -84,6 +83,7 @@ class b2cController extends Controller
 
             \App\B2c::where('originator_conversation_id', $callbackData->Result->OriginatorConversationID)
             ->update([
+                'originator_conversation_id' =>$callbackData->Result->OriginatorConversationID,
                 'result_description' => $callbackData->Result->ResultDesc,
                 'transaction_id' => $callbackData->Result->TransactionID,
                 'result_code' => $callbackData->Result->ResultCode,
@@ -98,7 +98,7 @@ class b2cController extends Controller
             $resp = json_decode($callbackData);
 
             print_r($resp);
-            \App\B2c::where('originator_conversation_id', $resp->OriginatorConversationID)
+            \App\B2c::where('conversation_id', $resp->ConversationID)
             ->update([
                 'result_description' => $resp->resultDesc,
                 'amount' => $resp->amount,
