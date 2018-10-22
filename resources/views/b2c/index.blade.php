@@ -46,7 +46,7 @@
                     </tbody>
                     <tfoot>
                       <tr>
-                        <td colspan="4">
+                        <td colspan="12">
                           {{--{{ $links->links() }}--}}
                         </td>
                       </tr>

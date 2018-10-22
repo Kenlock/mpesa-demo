@@ -39,7 +39,7 @@
                     </tbody>
                     <tfoot>
                       <tr>
-                        <td colspan="4">
+                        <td colspan="8">
                           {{--{{ $stk->stkTrans() }}--}}
                         </td>
                       </tr>
