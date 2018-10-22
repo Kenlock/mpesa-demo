@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class c2bController extends Controller
 {
     public function index() {
-        $links = \App\C2B::paginate(config('app.default_pagination'));
+        $links = \App\C2b::paginate(config('app.default_pagination'));
         //echo '<pre>';
         //print_r($links);
         return view('c2b.index', ['c2b' => $links]);
