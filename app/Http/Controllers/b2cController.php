@@ -40,7 +40,7 @@ class b2cController extends Controller
             $mpesa= new \Safaricom\Mpesa\Mpesa();
 
             $b2cTransaction=$mpesa->b2c($InitiatorName, $SecurityCredential, $CommandID, $Amount, $PartyA, $PartyB, $Remarks, $QueueTimeOutURL, $ResultURL, $Occasion);
-
+            echo gettype($b2cTransaction);
             $b2cjson = json_encode($b2cTransaction);
             echo gettype($b2cjson);
             $resp = json_decode($b2cjson);
