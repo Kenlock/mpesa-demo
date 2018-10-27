@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "32e7f259a49271d8b4277244b84a457c",
+    "content-hash": "aea1ab4ae97774e47ae00b2da51d0f00",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -368,16 +368,16 @@
         },
         {
             "name": "ivantoz/mpesa",
-            "version": "dev-master",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ivantoz/mpesa-php-sdk.git",
-                "reference": "421fa73243129f063098f20d4435891f9d4b0235"
+                "reference": "5b232214175cd9f0e4312a7f3060adaf1cd71d07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ivantoz/mpesa-php-sdk/zipball/421fa73243129f063098f20d4435891f9d4b0235",
-                "reference": "421fa73243129f063098f20d4435891f9d4b0235",
+                "url": "https://api.github.com/repos/ivantoz/mpesa-php-sdk/zipball/5b232214175cd9f0e4312a7f3060adaf1cd71d07",
+                "reference": "5b232214175cd9f0e4312a7f3060adaf1cd71d07",
                 "shasum": ""
             },
             "require": {
@@ -400,7 +400,7 @@
                 }
             ],
             "description": "A PHP package for Mpesa API",
-            "time": "2018-10-27T13:11:27+00:00"
+            "time": "2018-10-27T13:45:30+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -4029,9 +4029,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "ivantoz/mpesa": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
