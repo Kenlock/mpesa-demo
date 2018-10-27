@@ -23,7 +23,7 @@ class StkController extends Controller
               'transactiondesc' => 'required',
           ]);
 
-          $mpesa = new \Safaricom\Mpesa\Mpesa();
+          $mpesa = new \Ivantoz\Mpesa\Mpesa();
 
           $BusinessShortCode = env("BUSINESS_SHORTCODE");
           $LipaNaMpesaPasskey = env("LIPA_NA_MPESA_PASSKEY");
@@ -69,7 +69,7 @@ class StkController extends Controller
     public function callback(Request $request) {
 
         try {
-            $mpesa = new \Safaricom\Mpesa\TransactionCallbacks();
+            $mpesa = new \Ivantoz\Mpesa\TransactionCallbacks();
 
             $callbackData = $mpesa->processSTKPushRequestCallback();
 
@@ -102,7 +102,7 @@ class StkController extends Controller
 
                 ]);
         } catch (\Exception $e) {
-            $mpesa = new \Safaricom\Mpesa\Mpesa();
+            $mpesa = new \Ivantoz\Mpesa\Mpesa();
 
             $callbackJSONData = $mpesa->getDataFromCallback();
 

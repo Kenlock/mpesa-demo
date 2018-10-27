@@ -28,7 +28,7 @@ class c2bController extends Controller
             $BillRefNumber = $request->get('BillRefNumber');
             $CommandID = $request->get('CommandID');
 
-            $mpesa = new \Safaricom\Mpesa\Mpesa();
+            $mpesa = new \Ivantoz\Mpesa\Mpesa();
 
             $c2bTransaction=$mpesa->c2b($ShortCode, $CommandID, $Amount, $Msisdn, $BillRefNumber );
 
@@ -43,13 +43,13 @@ class c2bController extends Controller
 
     public function c2bValidation(Request $request) {
 
-        $mpesa = new \Safaricom\Mpesa\TransactionCallbacks();
+        $mpesa = new \Ivantoz\Mpesa\TransactionCallbacks();
 
         $callbackData = $mpesa->processC2BRequestValidation();
 
         $jdata = json_decode($callbackData,true);
 
-        $mpesa2= new \Safaricom\Mpesa\Mpesa();
+        $mpesa2= new \Ivantoz\Mpesa\Mpesa();
 
         $callbackData=$mpesa2->finishTransaction();
 
@@ -58,7 +58,7 @@ class c2bController extends Controller
 
     public function c2bConfirmation(Request $request){
 
-        $mpesa = new \Safaricom\Mpesa\TransactionCallbacks();
+        $mpesa = new \Ivantoz\Mpesa\TransactionCallbacks();
 
         $callbackData = $mpesa->processC2BRequestConfirmation();
 
@@ -82,7 +82,7 @@ class c2bController extends Controller
 
         $c2b->save();
 
-        $mpesa2= new \Safaricom\Mpesa\Mpesa();
+        $mpesa2= new \Ivantoz\Mpesa\Mpesa();
 
         $mpesa2->finishTransaction();
 
