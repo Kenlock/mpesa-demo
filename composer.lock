@@ -368,16 +368,16 @@
         },
         {
             "name": "ivantoz/mpesa",
-            "version": "1.0.8",
+            "version": "1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ivantoz/mpesa-php-sdk.git",
-                "reference": "5b232214175cd9f0e4312a7f3060adaf1cd71d07"
+                "reference": "a151f18136fe44d761c202979e304f3b66cda4af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ivantoz/mpesa-php-sdk/zipball/5b232214175cd9f0e4312a7f3060adaf1cd71d07",
-                "reference": "5b232214175cd9f0e4312a7f3060adaf1cd71d07",
+                "url": "https://api.github.com/repos/ivantoz/mpesa-php-sdk/zipball/a151f18136fe44d761c202979e304f3b66cda4af",
+                "reference": "a151f18136fe44d761c202979e304f3b66cda4af",
                 "shasum": ""
             },
             "require": {
@@ -400,7 +400,7 @@
                 }
             ],
             "description": "A PHP package for Mpesa API",
-            "time": "2018-10-27T13:45:30+00:00"
+            "time": "2018-10-27T14:04:48+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
