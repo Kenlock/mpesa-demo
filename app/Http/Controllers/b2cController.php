@@ -41,7 +41,8 @@ class b2cController extends Controller
 
             $b2cTransaction=$mpesa->b2c($InitiatorName, $SecurityCredential, $CommandID, $Amount, $PartyA, $PartyB, $Remarks, $QueueTimeOutURL, $ResultURL, $Occasion);
             $resp = json_decode($b2cTransaction);
-            echo gettype($resp);
+
+             gettype($resp);
             print_r($resp);
 
             if (isset($resp->errorCode)) {
