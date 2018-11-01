@@ -28,7 +28,7 @@ class b2cController extends Controller
             $SecurityCredential = env("SECURITY_CREDENTIAL");
             $CommandID = $request->get('CommandID');
             $Amount =  $request->get('amount');
-            $PartyA = env("PARTYA");
+            $PartyA = env("B2C_SHORTCODE");
             $PartyB = $request->get('phonenumber');
             $Remarks = $request->get('remarks');
             $QueueTimeOutURL = env("QUEUE_TIME_OUT_URL");
